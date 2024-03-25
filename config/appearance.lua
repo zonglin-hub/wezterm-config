@@ -27,6 +27,11 @@ return {
 
    -- scrollbar
    enable_scroll_bar = true,
+   min_scroll_bar_height = "3cell",
+   colors = {
+      scrollbar_thumb = '#174040',
+   },
+
 
    -- cursor
    default_cursor_style = "BlinkingBlock",
@@ -37,11 +42,11 @@ return {
    -- tab bar
    enable_tab_bar = true,
    hide_tab_bar_if_only_one_tab = false,
-   use_fancy_tab_bar = false,
+   use_fancy_tab_bar = true,
    tab_max_width = 25,
-   show_tab_index_in_tab_bar = false,
+   show_tab_index_in_tab_bar = true,
    switch_to_last_active_tab_when_closing_tab = true,
-
+   
    -- window
    adjust_window_size_when_changing_font_size = false,
    window_decorations = "INTEGRATED_BUTTONS|RESIZE",
@@ -56,9 +61,10 @@ return {
       top = 12,
       bottom = 7,
    },
-   window_close_confirmation = 'NeverPrompt',
+   window_close_confirmation = 'AlwaysPrompt',
    window_frame = {
-      active_titlebar_bg = '#090909',
+      active_titlebar_bg = '#0F2536',
+      inactive_titlebar_bg = '#0F2536',
       -- font = fonts.font,
       -- font_size = fonts.font_size,
    },
