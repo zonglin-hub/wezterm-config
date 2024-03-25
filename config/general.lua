@@ -1,3 +1,5 @@
+-- 常规设置 --
+
 return {
    -- behaviours
    automatically_reload_config = true,

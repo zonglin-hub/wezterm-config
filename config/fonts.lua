@@ -1,3 +1,5 @@
+-- 字体设置 -- 
+
 local wezterm = require('wezterm')
 local platform = require('utils.platform')
 

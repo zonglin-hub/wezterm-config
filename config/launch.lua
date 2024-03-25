@@ -1,3 +1,5 @@
+-- 不同系统启动菜单 -- 
+
 local platform = require('utils.platform')()
 
 local options = {
@@ -6,7 +8,7 @@ local options = {
 }
 
 if platform.is_win then
-   options.default_prog = { 'powershell' }
+   options.default_prog = { 'nu' }
    options.launch_menu = {
       { label = 'PowerShell Core', args = { 'pwsh' } },
       { label = 'PowerShell Desktop', args = { 'powershell' } },
@@ -14,7 +16,7 @@ if platform.is_win then
       { label = 'Nushell', args = { 'nu' } },
       {
          label = 'Git Bash',
-         args = { 'C:\\Users\\kevin\\scoop\\apps\\git\\current\\bin\\bash.exe' },
+         args = { 'D:\\Program Files\\Git\\git-bash.exe' },
       },
       {
          label = 'Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-101-generic x86_64)',
@@ -30,7 +32,7 @@ elseif platform.is_mac then
       { label = 'Zsh', args = { 'zsh' } },
    }
 elseif platform.is_linux then
-   options.default_prog = { 'fish' }
+   options.default_prog = { 'bash' }
    options.launch_menu = {
       { label = 'Bash', args = { 'bash' } },
       { label = 'Fish', args = { 'fish' } },

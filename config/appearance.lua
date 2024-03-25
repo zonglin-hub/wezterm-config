@@ -1,3 +1,5 @@
+-- 外观设置 -- 
+
 local wezterm = require('wezterm')
 local gpu_adapters = require('utils.gpu_adapter')
 local colors = require('colors.custom')

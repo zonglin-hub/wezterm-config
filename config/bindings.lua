@@ -1,3 +1,5 @@
+-- 快捷键设置 --
+
 local wezterm = require('wezterm')
 local platform = require('utils.platform')()
 local backdrops = require('utils.backdrops')
@@ -24,7 +26,8 @@ local keys = {
       mods = 'NONE',
       action = act.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }),
    },
-   -- toggle fullscreen
+
+   -- F11 切换全屏 --
    { key = 'F11', mods = 'NONE', action = act.ToggleFullScreen },
    { key = 'F12', mods = 'NONE', action = act.ShowDebugOverlay },
    { key = 'f', mods = mod.SUPER, action = act.Search({ CaseInSensitiveString = '' }) },
@@ -44,8 +47,10 @@ local keys = {
       }),
    },
 
-   -- copy/paste --
+   -- 复制 Ctrl+Shift+C
    { key = 'c', mods = 'CTRL|SHIFT', action = act.CopyTo('Clipboard') },
+
+   -- 粘贴 Ctrl+Shift+V
    { key = 'v', mods = 'CTRL|SHIFT', action = act.PasteFrom('Clipboard') },
 
    -- tabs --

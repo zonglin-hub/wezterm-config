@@ -1,3 +1,5 @@
+-- 初始化 -- 
+
 local wezterm = require('wezterm')
 
 ---@class Config
