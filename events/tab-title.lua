@@ -15,19 +15,20 @@ local M = {}
 
 local __cells__ = {}
 
+-- 设置 标签颜色
 local colors = {
    default = {
-      bg = '#45475a',
-      fg = '#1c1b19',
+      bg = "#85248C",
+      fg = "#0F2536",
    },
    is_active = {
-      bg = '#7FB4CA',
-      fg = '#11111b',
+      bg = "#46A4A6",
+      fg = "#0F2536",
    },
 
    hover = {
-      bg = '#587d8c',
-      fg = '#1c1b19',
+      bg = "#B531BF",
+      fg = "#0F2536",
    },
 }
 
