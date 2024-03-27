@@ -41,8 +41,9 @@ local _set_title = function(process_name, base_title, max_width, inset)
    local title
    inset = inset or 6
 
+   -- 自定义 windows 图标
    if process_name:len() > 0 then
-      title = process_name .. ' ~ ' .. base_title
+      title = "  " .. process_name .. ' ~ ' .. base_title
    else
       title = base_title
    end
