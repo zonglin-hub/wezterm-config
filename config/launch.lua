@@ -20,7 +20,7 @@ if platform.is_win then
       },
       {
          label = 'Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-101-generic x86_64)',
-         args = { 'ssh', 'liu@172.20.119.226', '-p', '22' },
+         args = { 'ssh', 'zonglin@172.20.115.195', '-p', '22' },
       },
    }
 elseif platform.is_mac then
