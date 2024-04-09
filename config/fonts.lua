@@ -1,10 +1,10 @@
--- 字体设置 -- 
+-- 字体设置 --
 
 local wezterm = require('wezterm')
 local platform = require('utils.platform')
 
 local font = 'Cascadia Code'
-local font_size = platform().is_mac and 15 or 13
+local font_size = platform().is_mac and 13 or 11
 
 return {
    font = wezterm.font(font),
