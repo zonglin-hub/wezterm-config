@@ -30,9 +30,9 @@ return {
    -- scrollbar
    enable_scroll_bar = true,
    min_scroll_bar_height = "3cell",
-   colors = {
-      scrollbar_thumb = '#174040',
-   },
+   -- colors = {
+   --    scrollbar_thumb = '#174040',
+   -- },
 
 
    -- cursor
