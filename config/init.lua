@@ -1,4 +1,4 @@
--- 初始化 -- 
+-- 初始化 --
 
 local wezterm = require('wezterm')
 

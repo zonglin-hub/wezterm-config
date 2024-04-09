@@ -1,4 +1,4 @@
--- 外观设置 -- 
+-- 外观设置 --
 
 local wezterm = require('wezterm')
 local gpu_adapters = require('utils.gpu_adapter')
@@ -48,7 +48,7 @@ return {
    tab_max_width = 25,
    show_tab_index_in_tab_bar = true,
    switch_to_last_active_tab_when_closing_tab = true,
-   
+
    -- window
    adjust_window_size_when_changing_font_size = false,
    window_decorations = "INTEGRATED_BUTTONS|RESIZE",
