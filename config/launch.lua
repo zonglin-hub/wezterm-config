@@ -25,11 +25,11 @@ if platform.is_win then
       },
    }
 elseif platform.is_mac then
-   options.default_prog = { '/opt/homebrew/bin/fish' }
+   options.default_prog = { 'bash' }
    options.launch_menu = {
       { label = 'Bash', args = { 'bash' } },
-      { label = 'Fish', args = { '/opt/homebrew/bin/fish' } },
-      { label = 'Nushell', args = { '/opt/homebrew/bin/nu' } },
+      { label = 'Fish', args = { 'fish' } },
+      { label = 'Nushell', args = { 'nu' } },
       { label = 'Zsh', args = { 'zsh' } },
    }
 elseif platform.is_linux then
@@ -37,6 +37,7 @@ elseif platform.is_linux then
    options.launch_menu = {
       { label = 'Bash', args = { 'bash' } },
       { label = 'Fish', args = { 'fish' } },
+      { label = 'Nushell', args = { 'nu' } },
       { label = 'Zsh', args = { 'zsh' } },
    }
 end
