@@ -10,7 +10,8 @@ local options = {
 if platform.is_win then
    options.default_prog = { 'nu' }
    options.launch_menu = {
-      { label = 'PowerShell Core', args = { 'pwsh' } },
+      -- 卸载 PowerShell Core，禁用
+      -- { label = 'PowerShell Core', args = { 'pwsh' } },
       { label = 'PowerShell Desktop', args = { 'powershell' } },
       { label = 'Command Prompt', args = { 'cmd' } },
       { label = 'Nushell', args = { 'nu' } },
@@ -20,7 +21,7 @@ if platform.is_win then
       },
       {
          label = 'Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-101-generic x86_64)',
-         args = { 'ssh', 'zonglin@172.20.115.195', '-p', '22' },
+         args = { 'ssh', 'zonglin@172.20.115.202', '-p', '22' },
       },
    }
 elseif platform.is_mac then
