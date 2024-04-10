@@ -47,11 +47,11 @@ local keys = {
       }),
    },
 
-   -- 复制 Ctrl+Shift+C
-   { key = 'c', mods = 'CTRL|SHIFT',  action = act.CopyTo('Clipboard') },
+   -- 复制 Ctrl+C --
+   { key = 'c', mods = 'CTRL',  action = act.CopyTo('Clipboard') },
 
-   -- 粘贴 Ctrl+Shift+V
-   { key = 'v', mods = 'CTRL|SHIFT',  action = act.PasteFrom('Clipboard') },
+   -- 粘贴 Ctrl+V --
+   { key = 'v', mods = 'CTRL',  action = act.PasteFrom('Clipboard') },
 
    -- tabs --
    -- tabs: spawn+close
