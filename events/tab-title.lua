@@ -1,21 +1,5 @@
 local wezterm = require('wezterm')
 
--- Inspired by https://github.com/wez/wezterm/discussions/628#discussioncomment-1874614
-
-local GLYPH_SEMI_CIRCLE_LEFT = ''
--- local GLYPH_SEMI_CIRCLE_LEFT = utf8.char(0xe0b6)
-local GLYPH_SEMI_CIRCLE_RIGHT = ''
--- local GLYPH_SEMI_CIRCLE_RIGHT = utf8.char(0xe0b4)
-local GLYPH_CIRCLE = ''
--- local GLYPH_CIRCLE = utf8.char(0xf111)
-local GLYPH_ADMIN = '󰞀'
--- local GLYPH_ADMIN = utf8.char(0xf0780)
-
-local M = {}
-
-local __cells__ = {}
-
--- 设置 标签颜色
 local color = {
    default = {
       bg = "#85248C",
@@ -55,8 +39,8 @@ local _set_title = function(process_name, base_title, max_width, inset)
       local pwsh_icon = utf8.char(0xf0a0a)
       title = pwsh_icon .. process_name .. ' '
    elseif process_name == "top" then
-      local SUNGLASS_ICON = utf8.char(0xf00d1)
-      title = SUNGLASS_ICON .. " " .. process_name .. ' '
+      local top_icon = utf8.char(0xf00d1)
+      title = top_icon .. " " .. process_name .. ' '
    else
       title = base_title
    end
@@ -65,27 +49,30 @@ local _set_title = function(process_name, base_title, max_width, inset)
 end
 
 local _check_if_admin = function(p)
-   if p:match('^Administrator: ') then
+   if p:match('^root: ') then
       return true
    end
 
    return false
 end
 
+local M = {}
+local cells = {}
+
 ---@param fg string
 ---@param bg string
 ---@param attribute table
 ---@param text string
 local _push = function(bg, fg, attribute, text)
-   table.insert(__cells__, { Background = { Color = bg } })
-   table.insert(__cells__, { Foreground = { Color = fg } })
-   table.insert(__cells__, { Attribute = attribute })
-   table.insert(__cells__, { Text = text })
+   table.insert(cells, { Background = { Color = bg } })
+   table.insert(cells, { Foreground = { Color = fg } })
+   table.insert(cells, { Attribute = attribute })
+   table.insert(cells, { Text = text })
 end
 
 M.setup = function()
    wezterm.on('format-tab-title', function(tab, _tabs, _panes, _config, hover, max_width)
-      __cells__ = {}
+      cells = {}
 
       local bg
       local fg
@@ -112,29 +99,33 @@ M.setup = function()
          end
       end
 
-      -- Left semi-circle
-      _push(fg, bg, { Intensity = 'Bold' }, GLYPH_SEMI_CIRCLE_LEFT)
+      -- 左半圆
+      local glyph_semi_circle_left = utf8.char(0xe0b6)
+      _push(fg, bg, { Intensity = 'Bold' }, glyph_semi_circle_left)
 
-      -- Admin Icon
+      -- 管理员图标
+      local glyph_admin = utf8.char(0xf0780)
       if is_admin then
-         _push(bg, fg, { Intensity = 'Bold' }, ' ' .. GLYPH_ADMIN)
+         _push(bg, fg, { Intensity = 'Bold' }, ' ' .. glyph_admin)
       end
 
-      -- Title
+      -- 标题
       _push(bg, fg, { Intensity = 'Bold' }, ' ' .. title)
 
-      -- Unseen output alert
+      -- 看不见的输出警报
+      local glyph_circle = utf8.char(0xf111)
       if has_unseen_output then
-         _push(bg, '#FFA066', { Intensity = 'Bold' }, ' ' .. GLYPH_CIRCLE)
+         _push(bg, '#FFA066', { Intensity = 'Bold' }, ' ' .. glyph_circle)
       end
 
-      -- Right padding
+      -- 右填充
       _push(bg, fg, { Intensity = 'Bold' }, ' ')
 
-      -- Right semi-circle
-      _push(fg, bg, { Intensity = 'Bold' }, GLYPH_SEMI_CIRCLE_RIGHT)
+      -- 右半圆
+      local glyph_semi_circle_right = utf8.char(0xe0b4)
+      _push(fg, bg, { Intensity = 'Bold' }, glyph_semi_circle_right)
 
-      return __cells__
+      return cells
    end)
 end
 
