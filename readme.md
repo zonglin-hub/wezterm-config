@@ -2,7 +2,6 @@
 
 ## References/Links
 
-- <https://github.com/rxi/lume>
-- <https://github.com/catppuccin/wezterm>
-- <https://github.com/wez/wezterm/discussions/628#discussioncomment-1874614>
-- <https://github.com/wez/wezterm/discussions/628#discussioncomment-5942139>
+- [Github - lume](https://github.com/rxi/lume)
+- [Github - wezterm](https://github.com/catppuccin/wezterm)
+- [Show your wezterms #628](https://github.com/wez/wezterm/discussions/628#discussioncomment-1874614)
