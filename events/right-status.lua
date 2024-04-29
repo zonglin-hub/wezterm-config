@@ -3,7 +3,6 @@ local nf = wezterm.nerdfonts
 local umath = require('utils.math')
 local M = {}
 
-local SEPARATOR_CHAR = nf.oct_dash .. ' '
 
 local discharging_icons = {
    nf.md_battery_10,
@@ -55,7 +54,8 @@ local _push = function(text, icon, fg, bg, separate)
    if separate then
       table.insert(__cells__, { Foreground = { Color = color.separator_fg } })
       table.insert(__cells__, { Background = { Color = color.separator_bg } })
-      table.insert(__cells__, { Text = SEPARATOR_CHAR })
+      local separator_char = nf.oct_dash .. ' '
+      table.insert(__cells__, { Text = separator_char })
    end
 end
 
