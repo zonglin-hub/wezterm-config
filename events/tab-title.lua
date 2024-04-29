@@ -16,7 +16,7 @@ local M = {}
 local __cells__ = {}
 
 -- 设置 标签颜色
-local colors = {
+local color = {
    default = {
       bg = "#85248C",
       fg = "#0F2536",
@@ -34,23 +34,31 @@ local colors = {
 
 local _set_process_name = function(s)
    local a = string.gsub(s, '(.*[/\\])(.*)', '%2')
-   return a:gsub('%.exe$', '')
+   return a:gsub('%$', '')
 end
 
 local _set_title = function(process_name, base_title, max_width, inset)
    local title
    inset = inset or 6
 
-   -- 自定义 windows 图标
-   if process_name:len() > 0 then
-      title = "  " .. process_name .. ' ~ ' .. base_title
+   -- 自定义窗口图标
+   if process_name == "nu" then
+      local linux_icon = utf8.char(0xebc6) .. ' '
+      title = linux_icon .. process_name .. ' '
+   elseif process_name == "bash" then
+      local bash_icon = utf8.char(0xebca) .. ' '
+      title = bash_icon .. process_name .. ' '
+   elseif process_name == "cmd" then
+      local cmd_icon = utf8.char(0xebc4) .. ' '
+      title = cmd_icon .. process_name .. ' '
+   elseif process_name == "powershell" then
+      local pwsh_icon = utf8.char(0xf0a0a)
+      title = pwsh_icon .. process_name .. ' '
+   elseif process_name == "top" then
+      local SUNGLASS_ICON = utf8.char(0xf00d1)
+      title = SUNGLASS_ICON .. " " .. process_name .. ' '
    else
       title = base_title
-   end
-
-   if title:len() > max_width - inset then
-      local diff = title:len() - max_width + inset
-      title = wezterm.truncate_right(title, title:len() - diff)
    end
 
    return title
@@ -60,6 +68,7 @@ local _check_if_admin = function(p)
    if p:match('^Administrator: ') then
       return true
    end
+
    return false
 end
 
@@ -85,14 +94,14 @@ M.setup = function()
       local title = _set_title(process_name, tab.active_pane.title, max_width, (is_admin and 8))
 
       if tab.is_active then
-         bg = colors.is_active.bg
-         fg = colors.is_active.fg
+         bg = color.is_active.bg
+         fg = color.is_active.fg
       elseif hover then
-         bg = colors.hover.bg
-         fg = colors.hover.fg
+         bg = color.hover.bg
+         fg = color.hover.fg
       else
-         bg = colors.default.bg
-         fg = colors.default.fg
+         bg = color.default.bg
+         fg = color.default.fg
       end
 
       local has_unseen_output = false

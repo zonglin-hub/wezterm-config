@@ -7,14 +7,17 @@ local color = require('colors.custom')
 return {
    animation_fps = 60,
    max_fps = 60,
+
+   -- ref: https://wezfurlong.org/wezterm/config/lua/config/front_end.html?h=front_end
    front_end = 'OpenGL',
    webgpu_power_preference = 'HighPerformance',
    webgpu_preferred_adapter = gpu_adapters:pick(),
 
-   -- color scheme
+   -- 主题
    colors = color,
 
-   -- background
+   -- 背景
+   -- ref: https://wezfurlong.org/wezterm/config/lua/config/background.html?h=background
    background = {
       {
          source = { File = wezterm.GLOBAL.background },
@@ -23,11 +26,12 @@ return {
          source = { Color = color.background },
          height = '100%',
          width = '100%',
+         -- 不透明
          opacity = 0.96,
       },
    },
 
-   -- scrollbar
+   -- 滚动条
    enable_scroll_bar = true,
    min_scroll_bar_height = "3cell",
    -- colors = {
@@ -35,7 +39,7 @@ return {
    -- },
 
 
-   -- cursor
+   -- 光标
    default_cursor_style = "BlinkingBlock",
    cursor_blink_ease_in = "Constant",
    cursor_blink_ease_out = "Constant",
@@ -49,7 +53,7 @@ return {
    show_tab_index_in_tab_bar = true,
    switch_to_last_active_tab_when_closing_tab = true,
 
-   -- window
+   -- 窗口
    adjust_window_size_when_changing_font_size = false,
    window_decorations = "INTEGRATED_BUTTONS|RESIZE",
    integrated_title_button_style = "Windows",
@@ -67,8 +71,6 @@ return {
    window_frame = {
       active_titlebar_bg = '#0F2536',
       inactive_titlebar_bg = '#0F2536',
-      -- font = fonts.font,
-      -- font_size = fonts.font_size,
    },
    inactive_pane_hsb = {
       saturation = 0.9,

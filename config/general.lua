@@ -1,4 +1,4 @@
--- 常规设置 --
+-- 定义规则以匹配终端输出中的文本并生成可单击的链接
 
 return {
    -- behaviours
@@ -8,6 +8,7 @@ return {
 
    scrollback_lines = 5000,
 
+   -- https://wezfurlong.org/wezterm/config/lua/config/hyperlink_rules.html?h=hyperlink_rules
    hyperlink_rules = {
       -- Matches: a URL in parens: (URL)
       {

@@ -20,15 +20,11 @@ end
 
 local keys = {
    -- misc/useful --
-   { key = 'F1', mods = 'NONE', action = 'ActivateCopyMode' },
-   { key = 'F2', mods = 'NONE', action = act.ActivateCommandPalette },
-   { key = 'F3', mods = 'NONE', action = act.ShowLauncher },
-   { key = 'F4', mods = 'NONE', action = act.ShowLauncherArgs({ flags = 'FUZZY|TABS' }) },
-   {
-      key = 'F5',
-      mods = 'NONE',
-      action = act.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }),
-   },
+   { key = 'F1',  mods = 'NONE',    action = 'ActivateCopyMode' },
+   { key = 'F2',  mods = 'NONE',    action = act.ActivateCommandPalette },
+   { key = 'F3',  mods = 'NONE',    action = act.ShowLauncher },
+   { key = 'F4',  mods = 'NONE',    action = act.ShowLauncherArgs({ flags = 'FUZZY|TABS' }) },
+   { key = 'F5',  mods = 'NONE',    action = act.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }) },
 
    -- F11 切换全屏 --
    { key = 'F11', mods = 'NONE',    action = act.ToggleFullScreen },
@@ -39,21 +35,21 @@ local keys = {
       mods = mod.SUPER,
       action = wezterm.action.QuickSelectArgs({
          label = 'open url',
-         patterns = {
-            'https?://\\S+',
-         },
-         action = wezterm.action_callback(function(window, pane)
+         patterns = { 'https?://\\S+', },
+         action = wezterm.action_callback(
+            function(window, pane)
             local url = window:get_selection_text_for_pane(pane)
             wezterm.log_info('opening: ' .. url)
             wezterm.open_with(url)
-         end),
+            end
+         ),
       }),
    },
 
-   -- 复制 Ctrl+C --
+   -- 复制 Ctrl+C
    { key = 'c', mods = 'CTRL',        action = act.CopyTo('Clipboard') },
 
-   -- 粘贴 Ctrl+V --
+   -- 粘贴 Ctrl+V
    { key = 'v', mods = 'CTRL',        action = act.PasteFrom('Clipboard') },
 
    -- tabs --
@@ -76,23 +72,29 @@ local keys = {
    {
       key = [[/]],
       mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
+      action = wezterm.action_callback(
+         function(window, _pane)
          backdrops:random(window)
-      end),
+         end
+      ),
    },
    {
       key = [[,]],
       mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
+      action = wezterm.action_callback(
+         function(window, _pane)
          backdrops:cycle_back(window)
-      end),
+         end
+      ),
    },
    {
       key = [[.]],
       mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
+      action = wezterm.action_callback(
+         function(window, _pane)
          backdrops:cycle_forward(window)
-      end),
+         end
+      ),
    },
    {
       key = [[/]],
@@ -102,62 +104,33 @@ local keys = {
          choices = backdrops:choices(),
          fuzzy = true,
          fuzzy_description = 'Select Background: ',
-         action = wezterm.action_callback(function(window, _pane, idx)
+         action = wezterm.action_callback(
+            function(window, _pane, idx)
             ---@diagnostic disable-next-line: param-type-mismatch
             backdrops:set_img(window, tonumber(idx))
-         end),
+            end
+         ),
       }),
    },
 
-   -- panes --
-   -- panes: split panes
-   {
-      key = [[\]],
-      mods = mod.SUPER,
-      action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
-   },
-   {
-      key = [[\]],
-      mods = mod.SUPER_REV,
-      action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
-   },
-
-   -- panes: zoom+close pane
+   -- 窗格 --
+   -- 分割窗格
+   { key = [[\]],   mods = mod.SUPER,     action = act.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+   { key = [[\]],   mods = mod.SUPER_REV, action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
+   -- 切换窗格缩放状态
    { key = 'Enter', mods = mod.SUPER,     action = act.TogglePaneZoomState },
+   -- 关闭当前窗格
    { key = 'w',     mods = mod.SUPER,     action = act.CloseCurrentPane({ confirm = false }) },
-
-   -- panes: navigation
+   -- 窗格: 导航
    { key = 'k',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
    { key = 'j',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Down') },
    { key = 'h',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Left') },
    { key = 'l',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Right') },
-   {
-      key = 'p',
-      mods = mod.SUPER_REV,
-      action = act.PaneSelect({ alphabet = '1234567890', mode = 'SwapWithActiveKeepFocus' }),
-   },
-
-   -- key-tables --
-   -- resizes fonts
-   {
-      key = 'f',
-      mods = 'LEADER',
-      action = act.ActivateKeyTable({
-         name = 'resize_font',
-         one_shot = false,
-         timemout_miliseconds = 1000,
-      }),
-   },
-   -- resize panes
-   {
-      key = 'p',
-      mods = 'LEADER',
-      action = act.ActivateKeyTable({
-         name = 'resize_pane',
-         one_shot = false,
-         timemout_miliseconds = 1000,
-      }),
-   },
+   { key = 'p',     mods = mod.SUPER_REV, action = act.PaneSelect({ alphabet = '1234567890', mode = 'SwapWithActiveKeepFocus' }) },
+   -- 调整字体大小
+   { key = 'f',     mods = 'LEADER',      action = act.ActivateKeyTable({ name = 'resize_font', one_shot = false, timemout_miliseconds = 1000, }) },
+   -- 调整窗格大小
+   { key = 'p',     mods = 'LEADER',      action = act.ActivateKeyTable({ name = 'resize_pane', one_shot = false, timemout_miliseconds = 1000, }) },
 }
 
 local key_tables = {
@@ -179,12 +152,8 @@ local key_tables = {
 }
 
 local mouse_bindings = {
-   -- Ctrl-click will open the link under the mouse cursor
-   {
-      event = { Up = { streak = 1, button = 'Left' } },
-      mods = 'CTRL',
-      action = act.OpenLinkAtMouseCursor,
-   },
+   -- Ctrl + 鼠标单击，将打开鼠标光标下的链接
+   { event = { Up = { streak = 1, button = 'Left' } }, mods = 'CTRL', action = act.OpenLinkAtMouseCursor },
 }
 
 return {

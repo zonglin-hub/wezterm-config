@@ -10,9 +10,7 @@ local options = {
 if platform.is_win then
    options.default_prog = { 'nu' }
    options.launch_menu = {
-
-      -- 卸载 PowerShell Core，禁用
-      -- { label = 'PowerShell Core', args = { 'pwsh' } },
+      { label = 'PowerShell Core',    args = { 'pwsh' } },
       { label = 'PowerShell Desktop', args = { 'powershell' } },
       { label = 'Command Prompt',     args = { 'cmd' } },
       { label = 'Nushell',            args = { 'nu' } },
@@ -27,12 +25,14 @@ elseif platform.is_mac then
       { label = 'Zsh',     args = { 'zsh' } },
    }
 elseif platform.is_linux then
-   options.default_prog = { 'bash' }
+   -- 配置默认启动程序
+   options.default_prog = { 'nu' }
+   -- 配置启动器菜单
    options.launch_menu = {
-      { label = 'Bash',    args = { 'bash' } },
-      { label = 'Fish',    args = { 'fish' } },
-      { label = 'Nushell', args = { 'nu' } },
-      { label = 'Zsh',     args = { 'zsh' } },
+      { label = 'Bash',    args = { 'bash', '-l' } },
+      { label = 'Nushell', args = { 'nu', '-l' } },
+      -- { label = 'Fish',    args = { 'fish' } },
+      -- { label = 'Zsh',     args = { 'zsh' } },
    }
 end
 

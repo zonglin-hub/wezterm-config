@@ -30,7 +30,7 @@ local charging_icons = {
    nf.md_battery_charging,
 }
 
-local colors = {
+local color = {
    date_fg = '#fab387',
    date_bg = '#0F2536',
    battery_fg = '#f9e2af',
@@ -53,15 +53,15 @@ local _push = function(text, icon, fg, bg, separate)
    table.insert(__cells__, { Text = icon .. ' ' .. text .. ' ' })
 
    if separate then
-      table.insert(__cells__, { Foreground = { Color = colors.separator_fg } })
-      table.insert(__cells__, { Background = { Color = colors.separator_bg } })
+      table.insert(__cells__, { Foreground = { Color = color.separator_fg } })
+      table.insert(__cells__, { Background = { Color = color.separator_bg } })
       table.insert(__cells__, { Text = SEPARATOR_CHAR })
    end
 end
 
 local _set_date = function()
-   local date = wezterm.strftime(' %a %H:%M')
-   _push(date, nf.fa_calendar, colors.date_fg, colors.date_bg, true)
+    local date = wezterm.strftime("%Y-%m-%d %H:%M:%S ")
+   _push(date, nf.fa_calendar, color.date_fg, color.date_bg, true)
 end
 
 local _set_battery = function()
@@ -81,7 +81,7 @@ local _set_battery = function()
       end
    end
 
-   _push(charge, icon, colors.battery_fg, colors.battery_bg, false)
+   _push(charge, icon, color.battery_fg, color.battery_bg, false)
 end
 
 M.setup = function()

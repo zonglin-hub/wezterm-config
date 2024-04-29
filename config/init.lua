@@ -26,9 +26,11 @@ function Config:append(new_options)
          )
          goto continue
       end
+
       self.options[k] = v
       ::continue::
    end
+
    return self
 end
 
