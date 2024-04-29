@@ -13,6 +13,9 @@ if platform.is_mac then
 elseif platform.is_win then
    mod.SUPER = 'ALT' -- to not conflict with Windows key shortcuts
    mod.SUPER_REV = 'ALT|CTRL'
+elseif platform.is_linux then
+   mod.SUPER = 'ALT' -- to not conflict with Windows key shortcuts
+   mod.SUPER_REV = 'ALT|CTRL'
 end
 
 local keys = {
@@ -48,10 +51,10 @@ local keys = {
    },
 
    -- 复制 Ctrl+C --
-   { key = 'c', mods = 'CTRL',  action = act.CopyTo('Clipboard') },
+   { key = 'c', mods = 'CTRL',        action = act.CopyTo('Clipboard') },
 
    -- 粘贴 Ctrl+V --
-   { key = 'v', mods = 'CTRL',  action = act.PasteFrom('Clipboard') },
+   { key = 'v', mods = 'CTRL',        action = act.PasteFrom('Clipboard') },
 
    -- tabs --
    -- tabs: spawn+close
