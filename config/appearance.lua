@@ -2,7 +2,7 @@
 
 local wezterm = require('wezterm')
 local gpu_adapters = require('utils.gpu_adapter')
-local colors = require('colors.custom')
+local color = require('colors.custom')
 
 return {
    animation_fps = 60,
@@ -12,7 +12,7 @@ return {
    webgpu_preferred_adapter = gpu_adapters:pick(),
 
    -- color scheme
-   colors = colors,
+   colors = color,
 
    -- background
    background = {
@@ -20,7 +20,7 @@ return {
          source = { File = wezterm.GLOBAL.background },
       },
       {
-         source = { Color = colors.background },
+         source = { Color = color.background },
          height = '100%',
          width = '100%',
          opacity = 0.96,
